@@ -1,22 +1,62 @@
-import { StatusBar } from "expo-status-bar";
-import { useEffect, useRef } from "react";
-import { Animated, StyleSheet, Text, View } from "react-native";
-import { FlashText } from "./FlashingText";
+import { useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
+import { FlashTextVibrate } from "./FlashingTextVibrate";
 
 export default function App() {
+  const [shouldFlashText, setShouldFlashText] = useState<boolean>(false);
+
   return (
     <View style={{ ...styles.container }}>
-      {/* <Text>Open up App.tsx to start working on your app!</Text> */}
-      <FlashText
-        flashSpeedInMs={500}
-        text={"Open up App.tsx to start working on your app!"}
-        styles={{
-          color: "green",
+      <View
+        style={{
+          height: 500,
+          justifyContent: "space-evenly",
         }}
-      />
-      {/* <FlashText flashSpeedInMs={500} text={"fast flash"} />
-      <FlashText flashSpeedInMs={2000} text={"slow flash"} /> */}
-      {/* <StatusBar style="auto" /> */}
+      >
+        <Text
+          style={{
+            fontSize: 30,
+            textAlign: "center",
+            color: "#eee",
+            marginHorizontal: 15,
+          }}
+        >
+          {"useFlashAnimation hook and <FlashTextVibrate /> component demo"}
+        </Text>
+
+        <FlashTextVibrate
+          flash={shouldFlashText}
+          flashSpeedInMs={500}
+          text={"Flashing Text"}
+          styles={{
+            color: "lime",
+            fontSize: 35,
+            textAlign: "center",
+          }}
+        />
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            padding: 10,
+            backgroundColor: "#aaa",
+          }}
+        >
+          <View style={{ flex: 1, marginRight: 5 }}>
+            <Button
+              title="start flash"
+              onPress={() => setShouldFlashText(true)}
+            />
+          </View>
+          <View style={{ flex: 1, marginLeft: 5 }}>
+            <Button
+              title="stop flash"
+              onPress={() => setShouldFlashText(false)}
+            />
+          </View>
+        </View>
+      </View>
     </View>
   );
 }
@@ -24,7 +64,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#222",
     alignItems: "center",
     justifyContent: "center",
   },

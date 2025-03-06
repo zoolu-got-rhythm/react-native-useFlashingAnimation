@@ -2,7 +2,8 @@ import { useRef, useEffect } from "react";
 import { Animated } from "react-native";
 
 export const useFlashAnimation = (
-  flashSpeedInMs: number
+  flashSpeedInMs: number,
+  onFlashStarted?: (flashDurationInMs: number) => void
 ): [Animated.Value, () => void, () => void] => {
   const fadeAnim = useRef(new Animated.Value(1)).current; // Start opacity at 0
 
@@ -10,15 +11,15 @@ export const useFlashAnimation = (
     Animated.timing(fadeAnim, {
       toValue: 1, // End opacity at 1
       duration: flashSpeedInMs, // Duration in milliseconds
-      useNativeDriver: true, // Optimize performance
+      useNativeDriver: false, 
     }).start();
   }
 
   function fadeOut() {
     Animated.timing(fadeAnim, {
-      toValue: 0, // End opacity at 1
+      toValue: 0, // End opacity at 0
       duration: flashSpeedInMs, // Duration in milliseconds
-      useNativeDriver: true, // Optimize performance
+      useNativeDriver: false,
     }).start();
   }
 
@@ -26,6 +27,7 @@ export const useFlashAnimation = (
 
   function toggle() {
     if (toggleFadeAnimationRef.current) {
+      onFlashStarted && onFlashStarted(flashSpeedInMs);
       fadeIn();
     } else {
       fadeOut();
@@ -40,7 +42,7 @@ export const useFlashAnimation = (
     return () => {
       // clean up
       window.clearInterval(timerIdRef.current);
-      fadeAnim.setValue(1);
+      // fadeAnim.setValue(1);
     };
   }, []);
 
