@@ -7,21 +7,11 @@ export default function App() {
 
   return (
     <View style={{ ...styles.container }}>
-      <View
-        style={{
-          height: 500,
-          justifyContent: "space-evenly",
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 30,
-            textAlign: "center",
-            color: "#eee",
-            marginHorizontal: 15,
-          }}
-        >
-          {"useFlashAnimation hook and <FlashTextWithVibration /> component demo"}
+      <View style={styles.demoContainer}>
+        <Text style={styles.title}>
+          {
+            "useFlashAnimation hook and <FlashTextWithVibration /> component demo"
+          }
         </Text>
 
         <FlashTextWithVibration
@@ -35,14 +25,7 @@ export default function App() {
           }}
         />
 
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            padding: 10,
-            backgroundColor: "#aaa",
-          }}
-        >
+        <View style={styles.buttonsContainer}>
           <View style={{ flex: 1, marginRight: 5 }}>
             <Button
               title="start flash"
@@ -67,5 +50,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#222",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  demoContainer: {
+    height: 500,
+    justifyContent: "space-evenly",
+  },
+
+  buttonsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    padding: 10,
+    backgroundColor: "#aaa",
+  },
+
+  title: {
+    fontSize: 30,
+    textAlign: "center",
+    color: "#eee",
+    marginHorizontal: 15,
   },
 });
