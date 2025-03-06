@@ -7,21 +7,19 @@ interface FlashTextProps {
   text: string;
   flash: boolean;
   styles?: StyleProp<TextStyle>;
+  onFlashStarted?: (flashDurationInMs: number) => void;
 }
 
-export const FlashTextVibrate = ({
+export const FlashText = ({
   flashSpeedInMs,
   text,
   styles,
   flash = false,
+  onFlashStarted,
 }: FlashTextProps) => {
-  const vibratePhone = (durationInMs: number) => {
-    Vibration.vibrate(durationInMs);
-  };
-
   const [fadeAnimOpacityVal, startFlashFn, stopFlashFn] = useFlashAnimation(
     flashSpeedInMs,
-    vibratePhone
+    onFlashStarted
   );
 
   useEffect(() => {
@@ -37,4 +35,12 @@ export const FlashTextVibrate = ({
       {text}
     </Animated.Text>
   );
+};
+
+export const FlashTextWithVibration = (props: FlashTextProps) => {
+  const vibratePhone = (durationInMs: number) => {
+    Vibration.vibrate(durationInMs);
+  };
+
+  return <FlashText {...props} onFlashStarted={vibratePhone} />;
 };

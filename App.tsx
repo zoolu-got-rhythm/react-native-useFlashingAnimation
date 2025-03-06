@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { FlashTextVibrate } from "./FlashingTextVibrate";
+import { FlashTextWithVibration } from "./FlashingTextVibrate";
 
 export default function App() {
   const [shouldFlashText, setShouldFlashText] = useState<boolean>(false);
@@ -21,10 +21,10 @@ export default function App() {
             marginHorizontal: 15,
           }}
         >
-          {"useFlashAnimation hook and <FlashTextVibrate /> component demo"}
+          {"useFlashAnimation hook and <FlashTextWithVibration /> component demo"}
         </Text>
 
-        <FlashTextVibrate
+        <FlashTextWithVibration
           flash={shouldFlashText}
           flashSpeedInMs={500}
           text={"Flashing Text"}
