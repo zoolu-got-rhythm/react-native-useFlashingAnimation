@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Animated, StyleProp, TextStyle, Vibration } from "react-native";
 import { useFlashAnimation } from "./useFlashAnimation";
 
