@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Animated, StyleProp, TextStyle, Vibration } from "react-native";
-import { useFlashAnimation } from "./useFlashAnimation";
+import { useFlashingAnimation } from "./useFlashingAnimation";
 
 interface FlashTextProps {
   flashSpeedInMs: number;
@@ -17,7 +17,7 @@ export const FlashText = ({
   flash = false,
   onFlashStarted,
 }: FlashTextProps) => {
-  const [fadeAnimOpacityVal, startFlashFn, stopFlashFn] = useFlashAnimation(
+  const [fadeAnimOpacityVal, startFlashFn, stopFlashFn] = useFlashingAnimation(
     flashSpeedInMs,
     onFlashStarted
   );

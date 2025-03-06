@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Animated } from "react-native";
 
-export const useFlashAnimation = (
+export const useFlashingAnimation = (
   flashSpeedInMs: number,
   onFlashStarted?: (flashDurationInMs: number) => void
 ): [Animated.Value, () => void, () => void] => {
