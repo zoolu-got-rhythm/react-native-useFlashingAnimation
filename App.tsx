@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { FlashTextWithVibration } from "./FlashText";
+import { Dimensions } from "react-native";
+
+
+const screenWidth = Dimensions.get("window").width;
+
 
 export default function App() {
   const [shouldFlashText, setShouldFlashText] = useState<boolean>(false);
@@ -10,7 +15,7 @@ export default function App() {
       <View style={styles.demoContainer}>
         <Text style={styles.title}>
           {
-            "useFlashAnimation hook and <FlashTextWithVibration /> component demo"
+            "useFlashAnimation hook and \n  <FlashTextWithVibration /> component demo"
           }
         </Text>
 
@@ -55,6 +60,7 @@ const styles = StyleSheet.create({
   demoContainer: {
     height: 500,
     justifyContent: "space-evenly",
+    width: screenWidth
   },
 
   buttonsContainer: {
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 30,
+    fontSize: 21,
     textAlign: "center",
     color: "#eee",
     marginHorizontal: 15,
