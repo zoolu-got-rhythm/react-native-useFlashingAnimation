@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View, Platform } from "react-native";
 import { FlashTextWithVibration } from "./FlashText";
 import { Dimensions } from "react-native";
 
-
 const screenWidth = Dimensions.get("window").width;
-
 
 export default function App() {
   const [shouldFlashText, setShouldFlashText] = useState<boolean>(false);
@@ -60,7 +58,9 @@ const styles = StyleSheet.create({
   demoContainer: {
     height: 500,
     justifyContent: "space-evenly",
-    width: screenWidth
+    ...(Platform.OS === "android" || Platform.OS === "ios"
+      ? { width: screenWidth } // Apply full width on mobile
+      : {}), // Do nothing for web
   },
 
   buttonsContainer: {
